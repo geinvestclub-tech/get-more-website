@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Heebo:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Heebo', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #F5F0E8;
+  color: #2C2C2C;
+  line-height: 1.7;
+}
+
+/* Gold shimmer effect */
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #B8963E 0%, #D4AF6A 40%, #F0D090 50%, #D4AF6A 60%, #B8963E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 4s linear infinite;
+}
+
+/* Subtle grain texture overlay */
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  z-index: 9999;
+}
+
+/* Divider line */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #B8963E, transparent);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #B8963E 0%, #D4AF6A 50%, #B8963E 100%);
+  background-size: 200% auto;
+  color: #fff;
+  padding: 0.85rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background-position: right center;
+  box-shadow: 0 8px 30px rgba(184, 150, 62, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #B8963E;
+  padding: 0.8rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border: 1px solid #B8963E;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(184, 150, 62, 0.08);
+  box-shadow: 0 4px 20px rgba(184, 150, 62, 0.2);
+}
+
+/* Navigation */
+.nav-link {
+  position: relative;
+  color: #4A4A4A;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background: #B8963E;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #B8963E;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Section styles */
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #B8963E;
+  font-weight: 500;
+}
+
+/* Card */
+.luxury-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(184, 150, 62, 0.15);
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+}
+
+.luxury-card:hover {
+  border-color: rgba(184, 150, 62, 0.4);
+  box-shadow: 0 20px 60px rgba(184, 150, 62, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Input styling */
+.luxury-input {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(184, 150, 62, 0.25);
+  border-radius: 0;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: #2C2C2C;
+  width: 100%;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.luxury-input:focus {
+  border-color: #B8963E;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.08);
+}
+
+.luxury-input::placeholder {
+  color: #9A8F80;
+}
+
+/* FAQ accordion */
+.faq-item {
+  border-bottom: 1px solid rgba(184, 150, 62, 0.2);
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.animate-delay-100 { animation-delay: 0.1s; opacity: 0; }
+.animate-delay-200 { animation-delay: 0.2s; opacity: 0; }
+.animate-delay-300 { animation-delay: 0.3s; opacity: 0; }
+.animate-delay-400 { animation-delay: 0.4s; opacity: 0; }
+.animate-delay-500 { animation-delay: 0.5s; opacity: 0; }

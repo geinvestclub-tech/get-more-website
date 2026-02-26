@@ -1,0 +1,152 @@
+import Link from "next/link";
+
+export default function GuidePage() {
+  return (
+    <div>
+      {/* Hero */}
+      <section className="pt-36 pb-20 bg-charcoal relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(184,150,62,1) 0%, transparent 60%)" }}
+        />
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
+          <span className="section-label">מידע חיוני</span>
+          <h1
+            className="text-5xl md:text-6xl text-white mt-4 mb-6 leading-tight"
+            style={{ fontFamily: "Playfair Display, serif" }}
+          >
+            מדריך
+            <br />
+            <span className="gold-shimmer">המשקיע הכשיר</span>
+          </h1>
+          <p className="text-cream/60 text-xl max-w-2xl leading-relaxed">
+            כל מה שצריך לדעת על הסטטוס שפותח דלתות להשקעות בלתי זמינות לציבור הרחב
+          </p>
+        </div>
+      </section>
+
+      {/* What is qualified investor */}
+      <section className="py-24 bg-cream">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <span className="section-label">מה זה משקיע כשיר?</span>
+              <h2
+                className="text-4xl text-charcoal mt-4 mb-6"
+                style={{ fontFamily: "Playfair Display, serif" }}
+              >
+                ההגדרה הרשמית
+              </h2>
+              <p className="text-charcoal-light text-base leading-relaxed mb-6">
+                "משקיע כשיר" הוא מונח משפטי המוגדר בחוק ניירות ערך, תשכ"ח-1968, ובחוק הייעוץ תשנ"ה-1995. מדובר בגופים ואנשים פרטיים שמחמת עושרם, מומחיותם או היקף פעילותם, נחשבים לבעלי יכולת לשאת בסיכון גבוה יותר ולהבין השקעות מורכבות.
+              </p>
+              <p className="text-charcoal-light text-base leading-relaxed mb-8">
+                סטטוס זה מאפשר גישה להצעות השקעה שאינן מוצעות לציבור הרחב, כגון: גיוסים פרטיים, קרנות השקעה אלטרנטיביות, עסקאות נדל"ן מסחרי, ועוד.
+              </p>
+              <div className="gold-divider mb-8" />
+              <p className="text-xs text-charcoal-light/60 leading-relaxed">
+                המידע הבא הוא לצורכי הכרות בלבד ואינו מהווה ייעוץ משפטי. לבדיקת כשירות אישית, יש להיוועץ בעורך דין או ביועץ מוסמך.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="luxury-card">
+                <h3 className="text-gold text-sm tracking-widest mb-3 uppercase">תנאים לאדם פרטי</h3>
+                <ul className="space-y-3 text-charcoal-light text-sm">
+                  {[
+                    "הכנסה שנתית של לפחות ₪1,210,000 בכל אחת מ-2 השנים האחרונות",
+                    "שווי נכסים נזילים של לפחות ₪8,097,600",
+                    "הכנסה שנתית של לפחות ₪604,500 לצד נכסים נזילים של לפחות ₪4,049,600",
+                  ].map((item, i) => (
+                    <li key={i} className="flex gap-3">
+                      <span className="text-gold mt-0.5 flex-shrink-0 text-xs">◆</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs text-charcoal-light/50 mt-4">
+                  * הסכומים מתעדכנים מעת לעת. יש לבדוק את הנתון העדכני בהוראות הרשות לניירות ערך.
+                </p>
+              </div>
+
+              <div className="luxury-card">
+                <h3 className="text-gold text-sm tracking-widest mb-3 uppercase">גופים מוסדיים</h3>
+                <ul className="space-y-2 text-charcoal-light text-sm">
+                  {[
+                    "תאגיד בנקאי, חברת ביטוח, קרן פנסיה",
+                    "חברה שמנהלת תיקי ניירות ערך או קרן נאמנות",
+                    "תאגיד שכל בעלי מניותיו הם משקיעים כשירים",
+                    "קרן השקעות פרטית",
+                  ].map((item, i) => (
+                    <li key={i} className="flex gap-3">
+                      <span className="text-gold mt-0.5 flex-shrink-0 text-xs">◆</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-24 bg-mist">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="section-label">מה זה נותן</span>
+            <h2
+              className="text-4xl text-charcoal mt-4"
+              style={{ fontFamily: "Playfair Display, serif" }}
+            >
+              היתרונות של סטטוס הכשיר
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "גישה לעסקאות פרטיות",
+                desc: "הצעות שאינן זמינות לציבור הרחב — גיוסים פרטיים, עסקאות ישירות, קרנות סגורות",
+                icon: "◇",
+              },
+              {
+                title: "תנאים שונים",
+                desc: "בעסקאות מסוימות, משקיעים כשירים נהנים מתנאי כניסה שונים מהציבור",
+                icon: "◈",
+              },
+              {
+                title: "מגוון סוגי השקעות",
+                desc: "נדל\"ן מסחרי, אשראי חוץ-בנקאי, הון סיכון, קרנות השקעה — עולמות שלמים",
+                icon: "◉",
+              },
+            ].map((b) => (
+              <div key={b.title} className="luxury-card text-center">
+                <div className="text-gold text-3xl mb-4">{b.icon}</div>
+                <h3
+                  className="text-xl text-charcoal mb-3"
+                  style={{ fontFamily: "Playfair Display, serif" }}
+                >
+                  {b.title}
+                </h3>
+                <p className="text-charcoal-light text-sm leading-relaxed">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Disclaimer */}
+      <section className="py-12 bg-beige border-t border-gold/15">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-xs text-charcoal-light/60 leading-relaxed mb-8">
+            כל המידע באתר זה הוא לצרכי הכרות בלבד. הוא אינו מהווה ייעוץ השקעות, שיווק השקעות, ייעוץ משפטי או כלכלי. כל השקעה כרוכה בסיכונים כולל אפשרות לאובדן הקרן. GET MORE מספקת מעטפת שירות ותיאום קשר מול בית ההשקעות בלבד.
+          </p>
+          <Link href="/contact?type=check" className="btn-primary px-10 py-3">
+            בדוק את הכשירות שלך
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
