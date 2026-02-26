@@ -1,80 +1,93 @@
-import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import ContactForm from "@/components/ContactForm";
 
-export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const { name, phone, email, assets, message } = body;
-
-    // Validate required fields
-    if (!name || !phone || !email || !assets) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-    }
-
-    // Create transporter
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST || "smtp.gmail.com",
-      port: parseInt(process.env.EMAIL_PORT || "587"),
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    const htmlContent = `
-      <div style="font-family: Arial, sans-serif; direction: rtl; text-align: right; max-width: 600px; margin: 0 auto; border: 1px solid #B8963E; padding: 0;">
-        <div style="background: #2C2C2C; padding: 24px 32px;">
-          <h1 style="color: #B8963E; font-size: 22px; margin: 0; letter-spacing: 3px;">GET MORE</h1>
-          <p style="color: #F5F0E8; font-size: 12px; margin: 4px 0 0; opacity: 0.6;">פנייה חדשה מהאתר</p>
+export default function ContactPage() {
+  return (
+    <div>
+      {/* Hero */}
+      <section className="pt-36 pb-20 bg-charcoal relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{ background: "radial-gradient(ellipse at 60% 50%, rgba(184,150,62,1) 0%, transparent 60%)" }}
+        />
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
+          <span className="section-label">יצירת קשר</span>
+          <h1
+            className="text-5xl md:text-6xl text-white mt-4 mb-6 leading-tight"
+            style={{ fontFamily: "Playfair Display, serif" }}
+          >
+            נשמח לשמוע
+            <br />
+            <span className="gold-shimmer">ממך</span>
+          </h1>
+          <p className="text-cream/60 text-xl max-w-xl">
+            מלא את הפרטים ומנהל לקוחות בכיר יחזור אליך תוך 24 שעות.
+          </p>
         </div>
-        <div style="padding: 32px; background: #F5F0E8;">
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #B8963E; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; width: 40%;">שם מלא</td>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #2C2C2C; font-size: 15px;">${name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #B8963E; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">טלפון</td>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #2C2C2C; font-size: 15px;">${phone}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #B8963E; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">דוא"ל</td>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #2C2C2C; font-size: 15px;">${email}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #B8963E; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">היקף נכסים</td>
-              <td style="padding: 10px 0; border-bottom: 1px solid #DDD3C0; color: #2C2C2C; font-size: 15px;">${assets}</td>
-            </tr>
-            ${
-              message
-                ? `<tr>
-              <td colspan="2" style="padding: 16px 0 0;">
-                <p style="color: #B8963E; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 8px;">הודעה</p>
-                <p style="color: #4A4A4A; font-size: 14px; line-height: 1.7; margin: 0; white-space: pre-wrap;">${message}</p>
-              </td>
-            </tr>`
-                : ""
-            }
-          </table>
-        </div>
-        <div style="background: #EDE5D4; padding: 16px 32px; text-align: center;">
-          <p style="font-size: 10px; color: #9A8F80; margin: 0;">GET MORE | Private Capital | ${new Date().toLocaleDateString("he-IL")}</p>
-        </div>
-      </div>
-    `;
+      </section>
 
-    await transporter.sendMail({
-      from: `"GET MORE Website" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
-      replyTo: email,
-      subject: `פנייה חדשה מהאתר – ${name} | ${assets}`,
-      html: htmlContent,
-    });
+      {/* Form section */}
+      <section className="py-24 bg-mist">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
+            {/* Sidebar info */}
+            <div className="lg:col-span-2 space-y-10">
+              <div>
+                <h2
+                  className="text-2xl text-charcoal mb-4"
+                  style={{ fontFamily: "Playfair Display, serif" }}
+                >
+                  מה לצפות
+                </h2>
+                <div className="space-y-6">
+                  {[
+                    { icon: "01", title: "תגובה מהירה", desc: "נחזור אליך תוך 24 שעות ממועד הפנייה" },
+                    { icon: "02", title: "שיחה אישית", desc: "מנהל לקוחות בכיר יצור עמך קשר ישירות" },
+                    { icon: "03", title: "ללא לחץ", desc: "שיחת היכרות ראשונה ללא התחייבות ולחץ" },
+                  ].map((item) => (
+                    <div key={item.icon} className="flex gap-4 items-start">
+                      <span
+                        className="text-gold/30 text-3xl leading-none flex-shrink-0"
+                        style={{ fontFamily: "Playfair Display, serif" }}
+                      >
+                        {item.icon}
+                      </span>
+                      <div>
+                        <h4 className="text-charcoal font-semibold text-sm mb-1">{item.title}</h4>
+                        <p className="text-charcoal-light text-xs leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Email error:", error);
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
-  }
+              <div className="gold-divider" />
+
+              <div>
+                <h3
+                  className="text-lg text-charcoal mb-4"
+                  style={{ fontFamily: "Playfair Display, serif" }}
+                >
+                  שמירה על פרטיות
+                </h3>
+                <p className="text-charcoal-light text-sm leading-relaxed">
+                  כל הפרטים שתמסור יישמרו בסודיות מוחלטת ולא יועברו לכל גורם שלישי ללא אישורך המפורש.
+                </p>
+              </div>
+
+              <div className="bg-gold/5 border border-gold/20 p-5">
+                <p className="text-xs text-charcoal-light/70 leading-relaxed">
+                  GET MORE מספקת מעטפת שירות ותיאום קשר מול בית ההשקעות. אינה מעניקה ייעוץ או שיווק השקעות ואינה מנהלת תיקים.
+                </p>
+              </div>
+            </div>
+
+            {/* Form */}
+            <div className="lg:col-span-3">
+              <ContactForm title="פנייה דיסקרטית" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
